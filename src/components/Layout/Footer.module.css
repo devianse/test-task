@@ -1,0 +1,24 @@
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  display: flex;
+  justify-content: space-around;
+  background-color: rgba(255, 99, 71, 1);
+  align-items: center;
+}
+.button {
+  border-color: #1ad17c;
+  color: #1ad1b9;
+}
+
+.button:hover,
+.button:active {
+  color: black;
+}
+
+.button span {
+  margin: 0 0.5rem;
+}
