@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { cartActions } from "../../store/cart-slice";
+import classes from "./GoodsItem.module.css";
 
 const GoodsItem = (props) => {
   const [quantity, setQuantity] = useState(0);
@@ -11,15 +12,15 @@ const GoodsItem = (props) => {
       cartActions.addValuesToCart({
         id: props.id,
         quantity: +event.target.value,
-        totalPrice: +props.price * quantity,
+        totalPrice: +props.price * +event.target.value,
       })
     );
   };
   return (
-    <tr key={props.id}>
+    <tr key={props.id} className={classes.tr}>
       <td>ID = {props.id}</td>
-      <td>NAME = {props.name}</td>
-      <td>PRICE = {+props.price}</td>
+      <td>Артикул = {props.name}</td>
+      <td>Цена = {+props.price}</td>
       <td>
         <input
           type="number"
@@ -29,7 +30,7 @@ const GoodsItem = (props) => {
           value={quantity}></input>
       </td>
       <td>
-        {!quantity && "Сумма"}
+        {!quantity && "Итого"}
         {!!quantity && quantity * +props.price}
       </td>
     </tr>

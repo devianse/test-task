@@ -1,0 +1,5 @@
+.mainSection {
+  position: relative;
+  left: 140px;
+  overflow: scroll;
+}

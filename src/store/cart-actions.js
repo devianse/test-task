@@ -37,4 +37,30 @@ export const fetchCartData = () => {
   };
 };
 
-export const sendCartData = () => {};
+export const sendCartData = (cart) => {
+  return async () => {
+    const data = new FormData();
+    const products = {};
+
+    cart.map((item) => (products[item.id] = item.quantity));
+    data.append("products", JSON.stringify(products));
+
+    const sendRequest = async () => {
+      const response = await fetch(
+        "https://datainlife.ru/junior_task/add_basket.php",
+        {
+          method: "POST",
+          body: data,
+        }
+      );
+      if (!response.ok) {
+        throw new Error("Sending cart data failed");
+      }
+    };
+    try {
+      await sendRequest();
+    } catch (error) {
+      alert(error);
+    }
+  };
+};
